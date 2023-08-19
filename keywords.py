@@ -3,7 +3,7 @@ import pandas as pd
 from collections import defaultdict
 
 # Specify the relative path to your CSV file in the repository
-csv_file_path = "publications.csv"
+csv_file_path = "scopus.csv"
 
 # Load the CSV file into a pandas DataFrame
 df = pd.read_csv(csv_file_path)
