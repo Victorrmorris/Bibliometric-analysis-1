@@ -6,17 +6,17 @@ from collections import defaultdict
 csv_file_path = "/Users/victormorris/Desktop/publications.csv"
 
 # Load the CSV file into a pandas DataFrame
-df = pd.read_csv(/Users/victormorris/Desktop/publications.csv)
+df = pd.read_csv(csv_file_path)
 
 # Create a dictionary to store keyword co-occurrence frequencies
 keyword_cooccurrence = defaultdict(int)
 
-# Replace 'KeywordsColumn' with the actual column name that contains the keywords
+# Replace 'Title' with the actual column name that contains the keywords
 keywords_column_name = 'Title'
 
 # Iterate through each row of the DataFrame
 for index, row in df.iterrows():
-    keywords = row[title].split(';')
+    keywords = row[keywords_column_name].split(';')
     keywords = [kw.strip().lower() for kw in keywords]  # Convert to lowercase
     for kw1 in keywords:
         for kw2 in keywords:
