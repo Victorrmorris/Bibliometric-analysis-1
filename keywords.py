@@ -1,35 +1,35 @@
 import streamlit as st
 import pandas as pd
-from collections import defaultdict
+import plotly.express as px
 
-# Specify the relative path to your CSV file in the repository
+# Load the CSV file containing publication data (replace with your file path)
 csv_file_path = "scopus.csv"
-
-# Load the CSV file into a pandas DataFrame
 df = pd.read_csv(csv_file_path)
 
-# Create a dictionary to store keyword co-occurrence frequencies
-keyword_cooccurrence = defaultdict(int)
+# Replace 'Journal' with the actual column name containing journal names
+journal_column_name = 'Journal'
+# Replace 'Citations' with the actual column name containing citation metrics
+citation_column_name = 'Citations'
 
-# Replace 'Title' with the actual column name that contains the keywords
-keywords_column_name = 'Title'
+# Group data by journal and calculate total publications and total citations
+journal_data = df.groupby(journal_column_name)[citation_column_name].agg(['count', 'sum']).reset_index()
 
-# Iterate through each row of the DataFrame
-for index, row in df.iterrows():
-    keywords = row[keywords_column_name].split(';')
-    keywords = [kw.strip().lower() for kw in keywords]  # Convert to lowercase
-    for kw1 in keywords:
-        for kw2 in keywords:
-            if kw1 != kw2:
-                keyword_pair = tuple(sorted([kw1, kw2]))
-                keyword_cooccurrence[keyword_pair] += 1
+# Sort data by total publications in descending order
+journal_data = journal_data.sort_values(by='count', ascending=False)
 
 # Streamlit App
-st.title("Keyword Co-occurrence Analysis")
-st.write("Analyzing co-occurrence of keywords in publications")
+st.title("Journal Analysis")
+st.write("Visualizing publications across different journals")
 
-# Display co-occurrence results using Streamlit components
-st.write("Keyword Co-occurrence Frequencies:")
-for pair, count in keyword_cooccurrence.items():
-    kw1, kw2 = pair
-    st.write(f"Keywords: {kw1}, {kw2} | Co-occurrence Count: {count}")
+# Display top journals by total publications
+st.write("Top Journals by Total Publications:")
+st.dataframe(journal_data, height=300)
+
+# Visualize the distribution of publications across journals using Plotly
+st.write("Distribution of Publications across Journals:")
+fig = px.bar(journal_data, x=journal_column_name, y='count', title="Distribution of Publications across Journals")
+st.plotly_chart(fig)
+
+# Display impact factor or citation metrics (example)
+st.write("Impact Factor or Citation Metrics:")
+st.write("Please provide actual impact factor or citation metrics data.")
