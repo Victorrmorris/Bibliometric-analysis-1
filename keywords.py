@@ -16,7 +16,7 @@ keywords_column_name = 'Title'
 
 # Iterate through each row of the DataFrame
 for index, row in df.iterrows():
-    keywords = row[keywords_column_name].split(';')
+    keywords = row[title].split(';')
     keywords = [kw.strip().lower() for kw in keywords]  # Convert to lowercase
     for kw1 in keywords:
         for kw2 in keywords:
