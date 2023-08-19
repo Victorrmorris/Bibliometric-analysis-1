@@ -3,7 +3,7 @@ import pandas as pd
 from collections import defaultdict
 
 # Load the CSV file containing publication data (replace with your file path)
-csv_file_path = "scopus.csv"
+csv_file_path = "abstract.csv"
 df = pd.read_csv(csv_file_path)
 
 # Create a dictionary to store keyword co-occurrence frequencies
