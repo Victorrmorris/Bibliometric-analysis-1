@@ -13,7 +13,7 @@ keyword_cooccurrence = defaultdict(int)
 
 # Iterate through each row of the DataFrame
 for index, row in df.iterrows():
-    keywords = row['Titles'].split(';')
+    keywords = row['Title'].split(';')
     keywords = [kw.strip().lower() for kw in keywords]  # Convert to lowercase
     for kw1 in keywords:
         for kw2 in keywords:
