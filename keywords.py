@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 from collections import defaultdict
 
-# Specify the correct absolute path to your CSV file on the desktop
-csv_file_path = "/Users/victormorris/Desktop/scopus.csv"
+# Specify the relative path to your CSV file in the repository
+csv_file_path = "publications.csv"
 
 # Load the CSV file into a pandas DataFrame
 df = pd.read_csv(csv_file_path)
