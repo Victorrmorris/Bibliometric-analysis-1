@@ -6,7 +6,7 @@ from collections import defaultdict
 csv_file_path = "/Users/victormorris/Desktop/scopus.csv"
 
 # Load the CSV file into a pandas DataFrame
-df = pd.read_csv(csv_file_path, encoding='utf-8')
+df = pd.read_csv(csv_file_path)
 
 # Create a dictionary to store keyword co-occurrence frequencies
 keyword_cooccurrence = defaultdict(int)
