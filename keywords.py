@@ -2,16 +2,14 @@ import streamlit as st
 import pandas as pd
 from collections import defaultdict
 
-# Specify the relative path to your CSV file in the repository
+# Load the CSV file containing publication data (replace with your file path)
 csv_file_path = "scopus.csv"
-
-# Load the CSV file into a pandas DataFrame
 df = pd.read_csv(csv_file_path)
 
 # Create a dictionary to store keyword co-occurrence frequencies
 keyword_cooccurrence = defaultdict(int)
 
-# Replace 'Title' with the actual column name that contains the keywords
+# Replace 'Title' with the actual column name containing keywords
 keywords_column_name = 'Title'
 
 # Iterate through each row of the DataFrame
@@ -24,11 +22,11 @@ for index, row in df.iterrows():
                 keyword_pair = tuple(sorted([kw1, kw2]))
                 keyword_cooccurrence[keyword_pair] += 1
 
-# Streamlit App
+# Streamlit App Layout
 st.title("Keyword Co-occurrence Analysis")
 st.write("Analyzing co-occurrence of keywords in publications")
 
-# Display co-occurrence results using Streamlit components
+# Display Co-occurrence Results
 st.write("Keyword Co-occurrence Frequencies:")
 for pair, count in keyword_cooccurrence.items():
     kw1, kw2 = pair
